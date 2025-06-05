@@ -5,4 +5,5 @@ export class Manga {
     coverUrl?: string;
     releaseDate?: string;
     description?: string;
+    
 }
