@@ -4,21 +4,20 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MangaModule } from './manga/manga.module';
 
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mssql',
       host: 'localhost',
-      port: 1433,
-      username: 'user',
-      password: 'password',
       database: 'MangaDB',
-      entities: [__dirname + '/**/*.entity{.ts, .js}'],
-      synchronize: true,
       options: {
-        encrypt: false
-      }
+        trustedConnection: true,
+      },
+      extra: {
+        trustServerCertificate: true, // Evita errores de SSL
+      },
+      synchronize: true,
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
     }),
     MangaModule,
   ],
