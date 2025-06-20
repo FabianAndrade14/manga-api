@@ -8,16 +8,16 @@ import { MangaModule } from './manga/manga.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mssql',
-      host: 'localhost',
-      database: 'MangaDB',
-      options: {
-        trustedConnection: true,
-      },
-      extra: {
-        trustServerCertificate: true, // Evita errores de SSL
-      },
-      synchronize: true,
+      host: 'DESKTOP-P28TB49', // Tu nombre de servidor
+      database: 'MangaDB', // Asegúrate que la base existe
+      synchronize: true, // Solo para desarrollo
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      extra: {
+        options: {
+          trustedConnection: true, // ✅ Para autenticación de Windows
+          trustServerCertificate: true, // ✅ Para evitar errores SSL
+        },
+      },
     }),
     MangaModule,
   ],
